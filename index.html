@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Birthday Card</title>
+    <title>Happy Birthday Babe</title>
     <style>
         body {
             display: flex;
@@ -15,165 +15,145 @@
 
         .birthdayCard {
             position: relative;
-            width: 300px;
-            height: 400px;
+            width: 500px;
+            height: 600px;
             cursor: pointer;
             /* transform-style: preserve-3d;
             transform: perspective(2500px); */
             transition: 1s;
+            border-radius: 10px;
         }
 
         .cardFront {
             position: relative;
             background-color: #7F7F7F;
-            width: 300px;
-            height: 400px;
+            width: 500px;
+            height: 600px;
             overflow: hidden;
             transform-origin: left;
             /* box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .2), 30px 0 50px rgba(0, 0, 0, 0.4); */
             transition: .6s;
+            border-radius: 10px;
+        }
+
+        .tapme {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tapme::before {
+            content: url('tapme.png');
+            object-fit: contain;
         }
 
         .happy {
-            font-family: Tahoma, sans-serif;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
             text-align: center;
+            padding-top: 50px;
             margin: 30px;
-            background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            /* background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); */
             transition: .1s;
         }
 
-        /* .balloons {
-            position: absolute;
-        }
-
-        .balloonOne,
-        .balloonTwo,
-        .balloonThree,
-        .balloonFour {
-            position: absolute;
-            width: 85px;
-            height: 95px;
-            border-radius: 50%;
-        }
-
-        .balloonOne {
-            background-color: rgb(239, 71, 111, 0.7);
-            left: -10px;
-            top: 50px;
-        }
-
-        .balloonTwo {
-            background-color: rgb(6, 214, 160, 0.7);
-            left: 50px;
-            top: 20px;
-        }
-
-        .balloonThree {
-            background-color: rgb(255, 209, 102, 0.7);
-            left: 110px;
-            top: 50px;
-        }
-
-        .balloonFour {
-            background-color: rgb(17, 138, 178, 0.7);
-            left: 170px;
-            top: 20px;
-        }
-
-        .balloonOne:before,
-        .balloonTwo:before,
-        .balloonThree:before,
-        .balloonFour:before {
-            content: "";
-            position: absolute;
-            width: 1px;
-            height: 155px;
-            background-color: #ffd166;
-            top: 95px;
-            left: 43px;
-        }
-
-        .balloonOne:after,
-        .balloonTwo:after,
-        .balloonThree:after,
-        .balloonFour:after {
-            content: "";
-            position: absolute;
-            border-right: 7px solid transparent;
-            border-left: 7px solid transparent;
-            top: 94px;
-            left: 37px;
-        } */
-
-        /* 
-        .balloonOne:after {
-            border-bottom: 10px solid #ef476f;
-        }
-s
-        .balloonTwo:after {
-            border-bottom: 10px solid #06d6a0;
-        }
-
-        .balloonThree:after {
-            border-bottom: 10px solid #ffd166;
-        }
-
-        .balloonFour:after {
-            border-bottom: 10px solid #118ab2;
-        } */
-
         .cardInside {
             position: absolute;
-            background-color: #7F7F7F;
-            width: 300px;
-            height: 400px;
+            background-color: #f2f2f2;
+            width: 500px;
+            height: 600px;
             z-index: -1;
             left: 0;
             top: 0;
             /* box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2); */
+            border-radius: 10px;
         }
 
         p {
-            font-family: 'Brush Script MT', cursive;
-            margin: 40px;
-            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            text-align: justify;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            margin-left: 40px;
+            margin-right: 40px;
+            color: #181818;
         }
 
         .name {
             position: absolute;
             left: 150px;
             top: 200px;
-            color: #333;
+            color: #181818;
         }
 
         .back {
-            font-family: Tahoma, sans-serif;
-            color: #333;
+            font-family: 'Playfair Display', serif;
+            color: #181818;
             text-align: center;
             margin: 30px;
-            outline-color: #333;
-            outline-style: dotted;
+            outline-color: #181818;
+            /* outline-style: dotted; */
+            border-radius: 10px;
         }
 
-        .birthdayCard:hover {
-            /* transform: perspective(2500px) rotate(5deg); */
-            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .2), 0 10px 100px rgba(0, 0, 0, 0.5);
-        }
 
         .birthdayCard:hover .cardFront {
             transform: rotateY(-160deg);
+            background-color: 7F7F7F;
         }
 
         .birthdayCard:hover .happy {
             visibility: hidden;
         }
 
-        @media screen and (max-width: 500px) {
+        .birthdayCard:hover .tapme::before {
+            visibility: hidden;
+        }
+
+        .birthdayCard:hover .cardFront::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: 7F7F7F;
+            transition: opacity 0.5s;
+            opacity: 0;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+
+        .birthdayCard:hover .cardFront:hover::after {
+            opacity: 1;
+        }
+
+
+
+        @media (min-width: 576px) {
+
             .birthdayCard {
                 max-width: 100%;
-                /* Adjust maximum width for smaller screens */
-                /* max-height: 500px; */
-                /* Adjust maximum height for smaller screens */
+
+            }
+
+            .cardFront,
+            .cardInside {
+                padding: 10px;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .birthdayCard {
+                max-width: 100%;
+
             }
 
             .cardFront,
@@ -182,40 +162,131 @@ s
             }
 
 
-            /* Other adjustments for smaller screens */
+        }
+
+        #tsparticles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .moreConfettiButton {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #DDBB38;
+            color: #111111;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 
 <body>
-    <div class="birthdayCard">
+    <div class="birthdayCard" onclick="throwConfetti()">
+        <div id="tsparticles"></div>
         <div class="cardFront">
-            <h3 class="happy">Tap Me!</h3>
-            <!-- <div class="balloons">
-                <div class="balloonOne"></div>
-                <div class="balloonTwo"></div>
-                <div class="balloonThree"></div>
-                <div class="balloonFour"></div>
-            </div> -->
+            <div class="tapme">
+
+            </div>
         </div>
         <div class="cardInside">
-            <h3 class="back">HAPPY BIRTHDAY!</h3>
-            <p>Happy Birthday Ms. Vitug 🎉🎂,</p>
+            <h1 class="back">HAPPY BIRTHDAY 🎉🎂!</h1>
+            <br>
+            <p>Happy Birthday <b>Ms. Vitug</b>,</p>
+            <br>
             <p>I hope this day brings you all the joy and blessings you deserve. I want you to know that I'm sending my
                 warmest wishes
                 your way.</p>
-            <br>
+
             <p>As you step into another year, may the road ahead be filled with success, happiness, and fulfillment, not
                 just in your
                 birthday celebrations but also in your work and future endeavors.</p>
+
+            <p>Please take care, and enjoy your special day to the fullest! 🎈🥳</p>
+
             <br>
-            <p>Take care, and enjoy your special day to the fullest! 🎈🥳</p>
-            <br>
-            <br>
-            <p>Thank you,</p>
+            <p><b>Thank you so much!,</b></p>
             <p>Jeth</p>
+
+            <!-- <button class="moreConfettiButton" onclick="throwMoreConfetti()">More Confetti?! Click Here! 🤣</button> -->
         </div>
+
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+    <script>
+        function throwConfetti() {
+            const defaults = {
+                spread: 360,
+                ticks: 100,
+                gravity: 0,
+                decay: 0.94,
+                startVelocity: 30,
+                shapes: ["heart"],
+                colors: ["E09B2A", "DDBB38", "E0CC7F", "F3E8BC"],
+            };
+
+            confetti({
+                ...defaults,
+                particleCount: 50,
+                scalar: 2,
+            });
+
+            confetti({
+                ...defaults,
+                particleCount: 25,
+                scalar: 3,
+            });
+
+            confetti({
+                ...defaults,
+                particleCount: 10,
+                scalar: 4,
+            });
+        }
+
+        // function throwMoreConfetti() {
+        //     const duration = 15 * 1000,
+        //         animationEnd = Date.now() + duration,
+        //         defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        //     function randomInRange(min, max) {
+        //         return Math.random() * (max - min) + min;
+        //     }
+
+        //     const interval = setInterval(function () {
+        //         const timeLeft = animationEnd - Date.now();
+
+        //         if (timeLeft <= 0) {
+        //             return clearInterval(interval);
+        //         }
+
+        //         const particleCount = 50 * (timeLeft / duration);
+
+        //         // since particles fall down, start a bit higher than random
+        //         confetti(
+        //             Object.assign({}, defaults, {
+        //                 particleCount,
+        //                 origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+        //             })
+        //         );
+        //         confetti(
+        //             Object.assign({}, defaults, {
+        //                 particleCount,
+        //                 origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        //             })
+        //         );
+        //     }, 250);
+        // }
+    </script>
 </body>
 
 </html>
